@@ -60,3 +60,25 @@ class IntersectingLinesGen(QuestionGenerator):
 
     def generate_answer(self, values):
         return f'({values[0]}, {values[1]})'
+
+class SimpleAdditionSubtractionThreeTerms(QuestionGenerator):
+    def generate_text(self, values):
+        return f'What is {values[0]} + {values[1]} - {values[2]}?'
+
+    def generate_answer(self, values):
+        return values[0] + values[1] - values[2]
+
+    def generate_value(self):
+        return [random.randint(1, 1000000), random.randint(1, 1000000), random.randint(1, 1000000)]
+
+
+# a1:coefficient, a2: distance - > a1(a2(a2+1)/2) for sum of first a2 terms
+class RepeatingSummation(QuestionGenerator):
+    def generate_value(self):
+        return [random.randint(1, 8), random.randint(1, 90)]
+
+    def generate_text(self, values):
+        return f'What is the sum of the first {values[1]} terms of the sequence {values[0]} + {values[0] * 2} + {values[0] * 3} + ...?'
+
+    def generate_answer(self, values):
+        return int(values[0] * (values[1] * (values[1] + 1) / 2))

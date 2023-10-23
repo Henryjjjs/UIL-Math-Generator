@@ -7,7 +7,7 @@ import question_generators
 font_attr = ("times", 10)
 
 
-question_gens = [question_generators.TimeDifferenceGen(), question_generators.QuadraticZerosGen(), question_generators.IntersectingLinesGen()]
+question_gens = [question_generators.TimeDifferenceGen(), question_generators.QuadraticZerosGen(), question_generators.IntersectingLinesGen(), question_generators.SimpleAdditionSubtractionThreeTerms(), question_generators.RepeatingSummation()]
 
 pdf = FPDF()
 pdf.add_page()
