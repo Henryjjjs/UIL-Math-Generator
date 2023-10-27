@@ -1,10 +1,11 @@
 import datetime
 import random
 
-from util import QuestionGenerator
+from util import QuestionGenerator, generator
 from fractions import Fraction
 
 
+@generator
 class TimeDifferenceGen(QuestionGenerator):
     @staticmethod
     def datetime_formatter(d):
@@ -25,7 +26,7 @@ class TimeDifferenceGen(QuestionGenerator):
         minutes_difference = int(time_difference.total_seconds() / 60)
         return minutes_difference
 
-
+@generator
 # generate factored form (ax + b)(cx+d) -> x intercepts are -b/a and -d/c; A = ac, B = ad + bc, C = bd
 class QuadraticZerosGen(QuestionGenerator):
     def generate_value(self):
@@ -45,7 +46,7 @@ class QuadraticZerosGen(QuestionGenerator):
             except ZeroDivisionError:
                 return "No Solutions"
 
-
+@generator
 # generate (i1, i2), m1 = a/b, m2 = c/d -> Line1: m = m1, b = -m1i1+i2, Line2: m = m2, b = -m2i1 + i2
 class IntersectingLinesGen(QuestionGenerator):
     def generate_value(self):
@@ -61,6 +62,7 @@ class IntersectingLinesGen(QuestionGenerator):
     def generate_answer(self, values):
         return f'({values[0]}, {values[1]})'
 
+@generator
 class SimpleAdditionSubtractionThreeTerms(QuestionGenerator):
     def generate_text(self, values):
         return f'What is {values[0]} + {values[1]} - {values[2]}?'
@@ -72,6 +74,7 @@ class SimpleAdditionSubtractionThreeTerms(QuestionGenerator):
         return [random.randint(1, 1000000), random.randint(1, 1000000), random.randint(1, 1000000)]
 
 
+@generator
 # a1:coefficient, a2: distance - > a1(a2(a2+1)/2) for sum of first a2 terms
 class RepeatingSummation(QuestionGenerator):
     def generate_value(self):
